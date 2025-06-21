@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommender System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin: 20px auto;
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .movies {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .movie {
+            margin: 10px;
+            width: 200px;
+        }
+        .movie img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .movie h3 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Movie Recommender System</h1>
+
+    <form method="POST">
+        <select name="movie">
+            {% for title in movie_titles %}
+                <option value="{{ title }}">{{ title }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit">Recommend</button>
+    </form>
+<!-- <form action="/recommend" method="post">
+    <select name="movie">
+        {% for title in movie_titles %}
+            <option value="{{ title }}">{{ title }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <button type="submit">Recommend</button>
+</form> -->
+
+    {% if names %}
+    <div class="movies">
+        {% for name, poster in zip(names, posters) %}
+        <div class="movie">
+            <img src="{{ poster }}" alt="{{ name }}">
+            <h3>{{ name }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</body>
+</html>
